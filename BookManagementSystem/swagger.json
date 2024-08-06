@@ -1,0 +1,864 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+      "title": "BookManagement",
+      "description": "API documentation for Book Management system",
+      "version": "1.0.0",
+      "contact": {}
+  },
+  "servers": [
+      {
+          "url": "http://localhost:3000",
+          "description" : "Local Server"
+      },
+      {
+        "url": "http://localhost:4000",
+        "description" : "Production Server"
+      }
+  ],
+  "paths": {
+      "/api/users/signup": {
+          "post": {
+              "tags": [
+                  "User"
+              ],
+              "summary": "Signup",
+              "description": "Signup",
+              "operationId": "signup",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "email": {
+                                      "type": "string",
+                                      "example": "mitaligadhiya6@gmail.com"
+                                  },
+                                  "password": {
+                                      "type": "string",
+                                      "example": "1234"
+                                  },
+                                  "role": {
+                                      "type": "string",
+                                      "example": "admin"
+                                  },
+                                  "username": {
+                                      "type": "string",
+                                      "example": "Mitali"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "Signup": {
+                                  "value": {
+                                      "email": "mitaligadhiya6@gmail.com",
+                                      "password": "1234",
+                                      "role": "admin",
+                                      "username": "Mitali"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": "Ok Signed Up succesfully"
+                  },
+                  "500" : {
+                    "description": "Internal Server Error"
+                  }
+              }
+          }
+      },
+      "/api/users/login": {
+          "post": {
+              "tags": [
+                  "User"
+              ],
+              "summary": "Login",
+              "description": "Login",
+              "operationId": "login",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "email": {
+                                      "type": "string",
+                                      "example": "mitaligadhiya6@gmail.com"
+                                  },
+                                  "password": {
+                                      "type": "string",
+                                      "example": "1234"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "Login": {
+                                  "value": {
+                                      "email": "mitaligadhiya6@gmail.com",
+                                      "password": "1234"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/users/protected": {
+          "get": {
+              "tags": [
+                  "User"
+              ],
+              "summary": "Protected",
+              "description": "Protected",
+              "operationId": "protected",
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              },
+              "security": [
+                  {
+                      "bearerAuth": []
+                  }
+              ]
+          }
+      },
+      "/api/category/createCategory": {
+          "post": {
+              "tags": [
+                  "Category"
+              ],
+              "summary": "AddCategory",
+              "description": "AddCategory",
+              "operationId": "addcategory",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "name": {
+                                      "type": "string",
+                                      "example": "Philosophy"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "AddCategory": {
+                                  "value": {
+                                      "name": "Philosophy"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/category/getAllCategories": {
+          "get": {
+              "tags": [
+                  "Category"
+              ],
+              "summary": "GetCategory",
+              "description": "GetCategory",
+              "operationId": "getcategory",
+              "parameters": [
+                  {
+                      "name": "page",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "2"
+                      }
+                  },
+                  {
+                      "name": "limit",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "1"
+                      }
+                  }
+              ],
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "examples": {
+                              "GetCategory": {
+                                  "value": ""
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/category/getCategoryById": {
+          "get": {
+              "tags": [
+                  "Category"
+              ],
+              "summary": "GetCategoryById",
+              "description": "GetCategoryById",
+              "operationId": "getcategorybyid",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "id": {
+                                      "type": "string",
+                                      "example": "6638bd8f222f1a413897795fd"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "GetCategoryById": {
+                                  "value": {
+                                      "id": "6638bd8f222f1a413897795fd"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/category/searchCategories": {
+          "get": {
+              "tags": [
+                  "Category"
+              ],
+              "summary": "SearchCategory",
+              "description": "SearchCategory",
+              "operationId": "searchcategory",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "search": {
+                                      "type": "string",
+                                      "example": "Fiction"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "SearchCategory": {
+                                  "value": {
+                                      "search": "Fiction"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/category/updateCategory/6638cce8309607bad83e23d3": {
+          "patch": {
+              "tags": [
+                  "Category"
+              ],
+              "summary": "EditCategory",
+              "description": "EditCategory",
+              "operationId": "editcategory",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "examples": {
+                              "EditCategory": {
+                                  "value": "{\r\n    // \"id\" : \"6638cce8309607bad83e23d3\",\r\n    \"name\" : \"Rom-Com\"\r\n}"
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/category/deleteCategory/6638db7ea98913834af821ae": {
+          "delete": {
+              "tags": [
+                  "Category"
+              ],
+              "security": [
+                {
+                    "bearerAuth": []
+                }
+            ],
+              
+              "summary": "New Request",
+              "description": "New Request",
+              "operationId": "newRequest",
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/books": {
+          "get": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "GetBooks",
+              "description": "GetBooks",
+              "operationId": "getbooks",
+              "parameters": [
+                  {
+                      "name": "page",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "2"
+                      }
+                  },
+                  {
+                      "name": "limit",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "1"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/books/6639d6a1ed00db7d90d2a6f1": {
+          "get": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "GetBooksById",
+              "description": "GetBooksById",
+              "operationId": "getbooksbyid",
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              },
+              "security": [
+                  {
+                      "bearerAuth": []
+                  }
+              ]
+          },
+          "patch": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "UpdateBooks",
+              "description": "UpdateBooks",
+              "operationId": "updatebooks",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "publishedYear": {
+                                      "type": "number",
+                                      "example": 1998
+                                  },
+                                  "title": {
+                                      "type": "string",
+                                      "example": "Ikigai"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "UpdateBooks": {
+                                  "value": {
+                                      "publishedYear": 1998,
+                                      "title": "Ikigai"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/books/6639d46df2d0d5ae0b6e3b38": {
+          "delete": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "DeleteBooks",
+              "description": "DeleteBooks",
+              "operationId": "deletebooks",
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/books/search": {
+          "get": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "SearchBooks",
+              "description": "SearchBooks",
+              "operationId": "searchbooks",
+              "parameters": [
+                  {
+                      "name": "q",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "Mocking"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/books/filter": {
+          "get": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "FilterBooks",
+              "description": "\nThis endpoint makes an HTTP GET request to filter books. The request does not include any specific parameters in the URL or request body. \n\n### Response\nThe response returned with a status code of 200 and a content type of application/json. The response body is an empty array [].\n\n#### JSON Schema\n```json\n{\n  \"type\": \"array\",\n  \"items\": {}\n}\n```\n",
+              "operationId": "filterbooks",
+              "parameters": [
+                  {
+                      "name": "query",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "Philosophy"
+                      }
+                  },
+                  {
+                      "name": "minPrice",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "300"
+                      }
+                  },
+                  {
+                      "name": "maxPrice",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "600"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              },
+              "security": [
+                  {
+                      "bearerAuth": []
+                  }
+              ]
+          }
+      },
+      "/api/books/": {
+          "post": {
+              "tags": [
+                  "Books"
+              ],
+              "summary": "AddBooks",
+              "description": "AddBooks",
+              "operationId": "addbooks",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "ISBN": {
+                                      "type": "string",
+                                      "example": "9780143130727"
+                                  },
+                                  "author": {
+                                      "type": "string",
+                                      "example": "6639cc2b4fd35166e8a9df06"
+                                  },
+                                  "category": {
+                                      "type": "string",
+                                      "example": "6639d462f2d0d5ae0b6e3b36"
+                                  },
+                                  "description": {
+                                      "type": "string",
+                                      "example": "THE JAPANESE SECRET TO A LONG AND HAPPY LIFE"
+                                  },
+                                  "price": {
+                                      "type": "number",
+                                      "example": 399
+                                  },
+                                  "publishedYear": {
+                                      "type": "number",
+                                      "example": 1998
+                                  },
+                                  "title": {
+                                      "type": "string",
+                                      "example": "Ikigai"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "AddBooks": {
+                                  "value": {
+                                      "ISBN": "9780143130727",
+                                      "author": "6639cc2b4fd35166e8a9df06",
+                                      "category": "6639d462f2d0d5ae0b6e3b36",
+                                      "description": "THE JAPANESE SECRET TO A LONG AND HAPPY LIFE",
+                                      "price": 399,
+                                      "publishedYear": 1998,
+                                      "title": "Ikigai"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/author/getAuthors": {
+          "get": {
+              "tags": [
+                  "Author"
+              ],
+              "summary": "getAuthors",
+              "description": "getAuthors",
+              "operationId": "getauthors",
+              "parameters": [
+                  {
+                      "name": "page",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "2"
+                      }
+                  },
+                  {
+                      "name": "limit",
+                      "in": "query",
+                      "schema": {
+                          "type": "string",
+                          "example": "3"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              },
+              "security": [
+                  {
+                      "bearerAuth": []
+                  }
+              ]
+          }
+      },
+      "/api/author/createAuthor": {
+          "post": {
+              "tags": [
+                  "Author"
+              ],
+              "summary": "AddAuthor",
+              "description": "AddAuthor",
+              "operationId": "addauthor",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "biography": {
+                                      "type": "string",
+                                      "example": "Bahut Bada Author"
+                                  },
+                                  "email": {
+                                      "type": "string",
+                                      "example": "csronly06@gmail.com"
+                                  },
+                                  "name": {
+                                      "type": "string",
+                                      "example": "Roronoa Zoro"
+                                  },
+                                  "nationality": {
+                                      "type": "string",
+                                      "example": "Indian"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "AddAuthor": {
+                                  "value": {
+                                      "biography": "Bahut Bada Author",
+                                      "email": "csronly06@gmail.com",
+                                      "name": "Roronoa Zoro",
+                                      "nationality": "Indian"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              },
+              "security": [
+                  {
+                      "bearerAuth": []
+                  }
+              ]
+          }
+      },
+      "/api/author/updateAuthor/6639cb5b4fd35166e8a9df01": {
+          "patch": {
+              "tags": [
+                  "Author"
+              ],
+              "summary": "UpdateAuthor",
+              "description": "UpdateAuthor",
+              "operationId": "updateauthor",
+              "requestBody": {
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                  "biography": {
+                                      "type": "string",
+                                      "example": "Mehanga Author"
+                                  },
+                                  "email": {
+                                      "type": "string",
+                                      "example": "csronly4@gmail.com"
+                                  },
+                                  "name": {
+                                      "type": "string",
+                                      "example": "Chirag"
+                                  },
+                                  "nationality": {
+                                      "type": "string",
+                                      "example": "Indian"
+                                  }
+                              }
+                          },
+                          "examples": {
+                              "UpdateAuthor": {
+                                  "value": {
+                                      "biography": "Mehanga Author",
+                                      "email": "csronly4@gmail.com",
+                                      "name": "Chirag",
+                                      "nationality": "Indian"
+                                  }
+                              }
+                          }
+                      }
+                  }
+              },
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      },
+      "/api/author/deleteAuthor/6639cb5b4fd35166e8a9df01": {
+          "delete": {
+              "tags": [
+                  "Author"
+              ],
+              "summary": "New Request",
+              "description": "New Request",
+              "operationId": "newRequest1",
+              "responses": {
+                  "200": {
+                      "description": ""
+                  }
+              }
+          }
+      }
+  },
+  "components": {
+      "securitySchemes": {
+          "bearerAuth": {
+              "type": "http",
+              "scheme": "bearer"
+          }
+        },
+          "schemas": {
+            "User": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string",
+                  "enum": ["user", "admin", "author"],
+                  "default": "user"
+                }
+              },
+              "required": ["username", "email", "password"]
+            }  ,
+            "Category": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            },
+            "Book": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "ISBN": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "publishedYear": {
+                  "type": "integer"
+                },
+                "authorName": {
+                  "type": "string"
+                },
+                "categoryName": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                }
+              },
+              "required": ["title", "author", "category", "ISBN", "price"]
+            },
+            "Author": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "biography": {
+                  "type": "string"
+                },
+                "nationality": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "array",
+                  "items": {
+                    "type": "number"
+                  }
+                },
+                "books": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": ["name", "email", "biography", "nationality", "age"]
+            }
+          }
+  },
+  "tags": [
+      {
+          "name": "User"
+      },
+      {
+          "name": "Category"
+      },
+      {
+          "name": "Books"
+      },
+      {
+          "name": "Author"
+      }
+  ]
+}

@@ -1,0 +1,13 @@
+# /node_modules/* in the project root is ignored by default
+# build output
+dist/*
+# coverage output
+coverage/*
+# data definition files
+**/*.d.ts
+# 3rd party libs
+/src/public/
+# node_modules
+node_modules
+# git
+**/.git
